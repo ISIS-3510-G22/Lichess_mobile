@@ -55,6 +55,7 @@ class _PieceSetScreenState extends ConsumerState<PieceSetScreen> {
   @override
   Widget build(BuildContext context) {
     final boardPrefs = ref.watch(boardPreferencesProvider);
+    final pieceImageHeight = (44 * MediaQuery.devicePixelRatioOf(context)).round();
 
     return PlatformScaffold(
       appBar: PlatformAppBar(
@@ -83,7 +84,8 @@ class _PieceSetScreenState extends ConsumerState<PieceSetScreen> {
                     ),
                     Row(
                       children: [
-                        for (final img in getPieceImages(pieceSet)) Image(image: img, height: 44),
+                        for (final img in getPieceImages(pieceSet))
+                          Image(image: ResizeImage(img, height: pieceImageHeight), height: 44),
                       ],
                     ),
                   ],
